@@ -41,7 +41,15 @@ def greetings():
         speak("Good Evening!")  
 
     speak("Boss!. Please tell me how may I help you")  
-
+    
+def email(a,b):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login('youremail@gmail.com', 'your-password')
+    server.sendmail('youremail@gmail.com', a, b)
+    server.close()
+    
 def command():
 
     r = sr.Recognizer()
@@ -78,5 +86,21 @@ if __name__ == "__main__":
             speak("According to Wikipedia") 
             print(results) 
             speak(results) 
+         
+        elif 'open youtube' in query:
+            webbrowser.open("youtube.com")
+
+        elif 'open google' in query:
+            webbrowser.open("google.com")
+        elif 'email to apoorv' in query:
+            try:
+                speak("What should I say?")
+                content = takeCommand()
+                to = "apoorvupadhyay1999@gmail.com"    
+                sendEmail(to, content)
+                speak("Email has been sent!")
+            except Exception as e:
+                print(e)
+                speak("There is Some Error!!")
 #     speak("Boss. Please tell me how may I help you")
 
