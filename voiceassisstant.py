@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import speech_recognition as sr 
 import datetime
 import wikipedia
+import os
 
 
 engine = pyttsx3.init()
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     greetings()
     command()
 
-    if 1:
+    while True:
           
         query = command().lower() 
         if 'wikipedia' in query: 
@@ -89,9 +90,15 @@ if __name__ == "__main__":
          
         elif 'open youtube' in query:
             webbrowser.open("youtube.com")
-
+        elif "close youtube" in comm:
+            speak("closing it")
+            os.system("taskkill /f /im chrome.exe")
+            
         elif 'open google' in query:
             webbrowser.open("google.com")
+        elif "close google" in comm:
+            speak("closing it")
+            os.system("taskkill /f /im chrome.exe")
         elif 'email to apoorv' in query:
             try:
                 speak("What should I say?")
@@ -102,5 +109,13 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("There is Some Error!!")
+        elif 'shutdown' in query:
+            speak("Activating all system shutting down sequence ; Have a nice day sir, good bye")
+            os.system('shutdown -s)
+                      
+    
+        else:
+            speak("Can you speak it again sir")
+                
 #     speak("Boss. Please tell me how may I help you")
 
